@@ -1,0 +1,71 @@
+<html ng-app="myApp">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <title>Slip10</title>
+</head>
+
+<body>
+    <h1>School System</h1>
+    <p><a href="#/">Main page</a></p>
+    <ul>
+        <li><a href="#/a">Subject1</a></li>
+        <li><a href="#/b">Subject2</a></li>
+        <li><a href="#/c">Subject3</a></li>
+        
+      
+    </ul>
+
+    <script type="text/ng-template" id="s.html">
+   <h2>Subject1</h2>
+   <h3>Subjects- c,c++</h3>
+  
+  
+  </script>
+
+    <script type="text/ng-template" id="p.html">
+   <h2>Subject2</h2>
+   <h3>Subjects- Adnavce C,Python</h3>
+  
+   
+  </script>
+
+    <script type="text/ng-template" id="ss.html">
+   <h2>Subject3</h2>
+   <h3> Java,Js </h3>
+   <li><a href="#/d">Subject4</a></li>
+   <Script type="text/ng-template" id="hh.html">
+    <h2>Subject4</h2>
+  </Script>
+
+  </script>
+
+ 
+    <div ng-view></div>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        var app = angular.module('myApp', ['ngRoute']);
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when('/a', {
+                    templateUrl: 's.html'
+                })
+                .when('/b', {
+                    templateUrl: 'p.html'
+                })
+                .when('/c', {
+                    templateUrl: 'ss.html'
+                })
+                .when('/d',{
+                    templateUrl: 'hh.html'
+                })
+               
+                .otherwise({ redirectTo: '/' })
+        });
+    </script>
+</body>
+
+</html>

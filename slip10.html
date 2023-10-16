@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>SYBBA(CA) Syllabus</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+  </head>
+  <body>
+    <h1>DETAILS OF 10 HOTELS</h1>
+    <p><a href="#/">Main page</a></p>
+    <h1>LIST OF HOTELS</h1>
+    <ul>
+      <li><a href="#/a">ABC</a></li>
+      <li><a href="#/b">XYZ</a></li>
+    </ul>
+
+    <script type="text/ng-template" id="s.html">
+      <h2>ABC</h2>
+      <p>PUNE</p>
+    </script>
+
+    <script type="text/ng-template" id="p.html">
+      <h2>XYZ</h2>
+      <p>PUNE, KOTHRUD</p>
+    </script>
+
+    <div ng-view></div>
+
+    <script>
+      var app = angular.module("myApp", []);
+      var app = angular.module("myApp", ["ngRoute"]);
+      app.config(function ($routeProvider) {
+        $routeProvider
+          .when("/a", {
+            templateUrl: "s.html",
+          })
+          .when("/b", {
+            templateUrl: "p.html",
+          })
+          .when("/c", {
+            templateUrl: "ss.html",
+          })
+          .when("/d", {
+            templateUrl: "aa.html",
+          })
+          .otherwise({ redirectTo: "/" });
+      });
+    </script>
+  </body>
+</html>

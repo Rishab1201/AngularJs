@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+  <title>Student Registration Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body ng-controller="StudentController">
+  <h1>Student Registration Form</h1>
+
+  <form name="studentForm" ng-submit="submitForm()">
+    <label>First Name:</label>
+    <input type="text" ng-model="student.firstName" placeholder="Enter first name" required pattern="[a-zA-Z]+">
+    <label>Last Name:</label>
+    <input type="text" ng-model="student.lastName" placeholder="Enter last name" required pattern="[a-zA-Z]+">
+    <label>Age:</label>
+    <input type="number" ng-model="student.age" placeholder="Enter age" required min="18" max="50">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div ng-show="greetingMessage">{{greetingMessage}}</div>
+  
+  <script>
+    var app = angular.module('studentApp', []);
+    app.controller('StudentController', function($scope) {
+      $scope.student = {};
+
+      $scope.submitForm = function() {
+        var currentTime = new Date().getHours();
+        if (currentTime < 12) {
+          $scope.greetingMessage = 'Good morning, ' + $scope.student.firstName + '!';
+        } else if (currentTime < 18) {
+          $scope.greetingMessage = 'Good afternoon, ' + $scope.student.firstName + '!';
+        } else {
+          $scope.greetingMessage = 'Good evening, ' + $scope.student.firstName + '!';
+        }
+      };
+    });
+  </script>
+</body>
+</html>

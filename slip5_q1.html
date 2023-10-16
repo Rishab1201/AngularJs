@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Simple Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="CalculatorController">
+
+    <h2>Simple Calculator</h2>
+    
+    <!-- Input fields for two numbers -->
+    Enter Number 1: <input type="number" ng-model="num1"><br>
+    Enter Number 2: <input type="number" ng-model="num2"><br>
+    
+    <!-- Add button -->
+    <button ng-click="addNumbers()" ng-disabled="!num1 || !num2">Add</button>
+    
+    <!-- Result display -->
+    <p ng-bind="result" ng-show="showResult"></p>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('CalculatorController', function ($scope) {
+            $scope.num1 = 0;
+            $scope.num2 = 0;
+            $scope.showResult = false;
+
+            $scope.addNumbers = function () {
+                $scope.result = "Result: " + ($scope.num1 + $scope.num2);
+                $scope.showResult = true;
+            };
+        });
+    </script>
+</body>
+</html>

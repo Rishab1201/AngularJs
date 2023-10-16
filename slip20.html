@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="validationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="ValidationController">
+        <h2>User Details Validation</h2>
+        <form ng-submit="validateDetails()">
+            <label>Name: <input type="text" ng-model="user.name" required pattern="[a-zA-Z ]+"></label><br>
+            <label>Mobile Number: <input type="text" ng-model="user.mobile" required pattern="[0-9]{10}"></label><br>
+            <label>Pin Code: <input type="text" ng-model="user.pincode" required pattern="[0-9]{6}"></label><br>
+            <label>Email Address: <input type="email" ng-model="user.email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"></label><br>
+            <button type="submit">Validate Details</button>
+        </form>
+
+        <div ng-if="validationResult">
+            <h3>Validation Result</h3>
+            <p>Name: {{ user.name }}</p>
+            <p>Mobile Number: {{ user.mobile }}</p>
+            <p>Pin Code: {{ user.pincode }}</p>
+            <p>Email Address: {{ user.email }}</p>
+        </div>
+    </div>
+
+    <script>
+        var validationApp = angular.module('validationApp', []);
+
+        validationApp.controller('ValidationController', ['$scope', function($scope) {
+            $scope.validateDetails = function() {
+                // Validation logic can be added here based on the provided patterns.
+                // For simplicity, we'll just display the entered details.
+
+                $scope.validationResult = true;
+            };
+        }]);
+    </script>
+</body>
+</html>

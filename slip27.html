@@ -1,0 +1,48 @@
+<html ng-app="myApp">
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <title>Slip27</title>
+</head>
+
+<body>
+    <h1>Food Reciepe</h1>
+    <p><a href="#/">Main page</a></p>
+    <ul>
+        <li><a href="#/a">VEG</a></li>
+        <li><a href="#/b">NONVEG</a></li>  
+    </ul>
+
+  <script type="text/ng-template" id="s.html">
+   <h2>VEG</h2>
+   <h3>Subjects- c,c++</h3>
+  </script>
+
+    <script type="text/ng-template" id="p.html">
+   <h2>NONVEG</h2>
+   <h3>Subjects- Adnavce C,Python</h3>  
+  </script>
+
+    <div ng-view></div>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        var app = angular.module('myApp', ['ngRoute']);
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when('/a', {
+                    templateUrl: 's.html'
+                })
+                .when('/b', {
+                    templateUrl: 'p.html'
+                })
+                
+               
+                .otherwise({ redirectTo: '/' })
+        });
+    </script>
+</body>
+
+</html>

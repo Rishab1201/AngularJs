@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>Historical Places</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  </head>
+  <body ng-controller="myController">
+    <h1>Historical Places</h1>
+    <ul>
+      <li ng-repeat="place in historicalPlaces">
+        <h2>{{place.name}}</h2>
+        <p><strong>Location:</strong> {{place.location}}</p>
+        <p><strong>History:</strong> {{place.history}}</p>
+      </li>
+    </ul>
+    <script>
+      var app = angular.module("myApp", []);
+
+      app.controller("myController", function ($scope) {
+        $scope.historicalPlaces = [
+          {
+            name: "Great Wall of China",
+            location: "China",
+            history:
+              "The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, and other materials, built along the northern borders of China to protect against invasions by nomadic groups.",
+          },
+          {
+            name: "Machu Picchu",
+            location: "Peru",
+            history:
+              "Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter (7,970 ft) mountain ridge. It is located in the Machupicchu District, Urubamba Province, Cusco Region, above the Sacred Valley.",
+          },
+          // Add more historical places as needed
+        ];
+      });
+    </script>
+  </body>
+</html>

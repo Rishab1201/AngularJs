@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>SYBBA(CA) Syllabus</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+  </head>
+  <body>
+    <h1>SYLLABUS OF SY BBA-CA</h1>
+    <p><a href="#/">Main page</a></p>
+    <ul>
+      <li><a href="#/a">CYBER SECURITY</a></li>
+      <li><a href="#/b">Java</a></li>
+      <li><a href="#/c">OPERATIN SYSTEM</a></li>
+      <li><a href="#/d">ANGULAR JS</a></li>
+    </ul>
+
+    <script type="text/ng-template" id="s.html">
+      <h2>CYBER SECURITY</h2>
+    </script>
+
+    <script type="text/ng-template" id="p.html">
+      <h2>JAVA </h2>
+    </script>
+
+    <script type="text/ng-template" id="ss.html">
+      <h2>OPERATING SYSTEM</h2>
+    </script>
+
+    <script type="text/ng-template" id="aa.html">
+      <h2>ANGULAR JS</h2>
+    </script>
+
+    <div ng-view></div>
+
+    <script>
+      var app = angular.module("myApp", []);
+      var app = angular.module("myApp", ["ngRoute"]);
+      app.config(function ($routeProvider) {
+        $routeProvider
+          .when("/a", {
+            templateUrl: "s.html",
+          })
+          .when("/b", {
+            templateUrl: "p.html",
+          })
+          .when("/c", {
+            templateUrl: "ss.html",
+          })
+          .when("/d", {
+            templateUrl: "aa.html",
+          })
+          .otherwise({ redirectTo: "/" });
+      });
+    </script>
+  </body>
+</html>

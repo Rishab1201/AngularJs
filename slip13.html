@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="markSheetApp">
+<head>
+  <title>Student Mark Sheet</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body ng-controller="markSheetController">
+  <h1>Student Mark Sheet</h1>
+
+  <form name="markSheetForm">
+    <label for="rollNo">Roll No:</label>
+    <input type="text" id="rollNo" ng-model="student.rollNo" required><br>
+
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" ng-model="student.studentName" required><br>
+
+    <label for="class">Class:</label>
+    <input type="text" id="class" ng-model="student.class" required><br>
+
+    <label for="sub1">ENGLISH</label>
+    <input type="number" id="sub1" ng-model="student.sub1" required><br>
+
+    <label for="sub2">HINDI</label>
+    <input type="number" id="sub2" ng-model="student.sub2" required><br>
+
+    <label for="sub3">MATHS</label>
+    <input type="number" id="sub3" ng-model="student.sub3" required><br>
+
+    <button ng-click="calculateMarkSheet()">Generate Mark Sheet</button>
+  </form>
+
+  <div ng-show="markSheetGenerated">
+    <h2>Mark Sheet</h2>
+    <p><strong>Roll No:</strong> {{student.rollNo}}</p>
+    <p><strong>Student Name:</strong> {{student.studentName}}</p>
+    <p><strong>Class:</strong> {{student.class}}</p>
+    <p><strong>ENGLISH:</strong> {{student.sub1}}</p>
+    <p><strong>HINDI:</strong> {{student.sub2}}</p>
+    <p><strong>MATHS:</strong> {{student.sub3}}</p>
+    <p><strong>Total:</strong> {{student.total}}</p>
+    <p><strong>Percentage:</strong> {{student.percentage}}%</p>
+    <p><strong>Grade:</strong> {{student.grade}}</p>
+  </div>
+
+  <script>
+    var app = angular.module('markSheetApp', []);
+
+    app.controller('markSheetController', function($scope) {
+      $scope.student = {};
+      $scope.markSheetGenerated = false;
+
+      $scope.calculateMarkSheet = function() {
+        $scope.student.total = $scope.student.sub1 + $scope.student.sub2 + $scope.student.sub3;
+        $scope.student.percentage = ($scope.student.total / 300) * 100;
+
+        if ($scope.student.percentage >= 90) {
+          $scope.student.grade = 'A+';
+        } else if ($scope.student.percentage >= 80) {
+          $scope.student.grade = 'A';
+        } else if ($scope.student.percentage >= 70) {
+          $scope.student.grade = 'B';
+        } else if ($scope.student.percentage >= 60) {
+          $scope.student.grade = 'C';
+        } else {
+          $scope.student.grade = 'D';
+        }
+
+        $scope.markSheetGenerated = true;
+      };
+    });
+  </script>
+</body>
+</html>

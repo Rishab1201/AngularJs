@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="employeeApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="EmployeeController">
+        <h2>Employee Details</h2>
+        <label>Filter by Department: 
+            <select ng-model="selectedDepartment">
+                <option value="">All</option>
+                <option ng-repeat="department in departments" value="{{ department }}">{{ department }}</option>
+            </select>
+        </label>
+        <br><br>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy:'salary' | filter: { department: selectedDepartment }">
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.salary }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var employeeApp = angular.module('employeeApp', []);
+
+        employeeApp.controller('EmployeeController', ['$scope', function($scope) {
+            $scope.departments = ['HR', 'Finance', 'IT', 'Sales'];
+
+            $scope.employees = [
+                { name: 'John Doe', department: 'HR', salary: 50000 },
+                { name: 'Jane Smith', department: 'Finance', salary: 60000 },
+                { name: 'David Johnson', department: 'IT', salary: 55000 },
+                { name: 'Sarah Williams', department: 'IT', salary: 53000 },
+                { name: 'Michael Brown', department: 'Sales', salary: 52000 },
+                { name: 'Emily Davis', department: 'HR', salary: 48000 }
+            ];
+        }]);
+    </script>
+</body>
+</html>

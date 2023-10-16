@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ticketApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Ticket Reservation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="TicketController">
+        <h2>Bus Ticket Reservation</h2>
+        <form ng-submit="generateTicket()">
+            <label>Name: <input ng-model="customer.name" required></label><br>
+            <label>Address: <input ng-model="customer.address" required></label><br>
+            <label>Contact No.: <input ng-model="customer.contactNo" required></label><br>
+            <label>Source Station:
+                <select ng-model="customer.sourceStation" required>
+                    <option value="" disabled selected>Select Source Station</option>
+                    <option value="Station A">Station A</option>
+                    <option value="Station B">Station B</option>
+                    <!-- Add more stations as needed -->
+                </select>
+            </label><br>
+            <label>Destination Station: <input ng-model="customer.destinationStation" required></label><br>
+            <label>Date of Booking: <input type="date" ng-model="customer.bookingDate" required></label><br>
+            <label>Date of Journey: <input type="date" ng-model="customer.journeyDate" required></label><br>
+            <label>No. of Passengers: <input type="number" ng-model="customer.numOfPassengers" required></label><br>
+            <label>Passenger Names (comma separated): <input ng-model="customer.passengerNames" required></label><br>
+            <label>Gender of Passenger:
+                <input type="radio" ng-model="customer.passengerGender" value="Male" > Male
+                <input type="radio" ng-model="customer.passengerGender" value="Female"> Female
+            </label><br>
+            <button type="submit">Generate e-Ticket</button>
+        </form>
+
+        <div ng-if="ticket">
+            <h2>e-Ticket</h2>
+            <p>Name: {{ customer.name }}</p>
+            <p>Address: {{ customer.address }}</p>
+            <p>Contact No.: {{ customer.contactNo }}</p>
+            <p>Source Station: {{ customer.sourceStation }}</p>
+            <p>Destination Station: {{ customer.destinationStation }}</p>
+            <p>Date of Booking: {{ customer.bookingDate }}</p>
+            <p>Date of Journey: {{ customer.journeyDate }}</p>
+            <p>No. of Passengers: {{ customer.numOfPassengers }}</p>
+            <p>Passenger Names: {{ customer.passengerNames }}</p>
+            <p>Gender of Passenger: {{ customer.passengerGender }}</p>
+        </div>
+    </div>
+
+    <script>
+        var ticketApp = angular.module('ticketApp', []);
+
+        ticketApp.controller('TicketController', ['$scope', function($scope) {
+            $scope.customer = {};
+            $scope.ticket = null;
+
+            $scope.generateTicket = function() {
+                // Create a ticket based on customer information
+                $scope.ticket = {
+                    name: $scope.customer.name,
+                    address: $scope.customer.address,
+                    contactNo: $scope.customer.contactNo,
+                    sourceStation: $scope.customer.sourceStation,
+                    destinationStation: $scope.customer.destinationStation,
+                    bookingDate: $scope.customer.bookingDate,
+                    journeyDate: $scope.customer.journeyDate,
+                    numOfPassengers: $scope.customer.numOfPassengers,
+                    passengerNames: $scope.customer.passengerNames.split(','),
+                    passengerGender: $scope.customer.passengerGender
+                };
+            };
+        }]);
+    </script>
+</body>
+</html>

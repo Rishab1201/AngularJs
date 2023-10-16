@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="doctorApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="DoctorController">
+        <h2>Doctor Details</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>DNo</th>
+                    <th>DName</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="doctor in doctors">
+                    <td>{{ doctor.dno }}</td>
+                    <td>{{ doctor.dname }}</td>
+                    <td>{{ doctor.address }}</td>
+                    <td>{{ doctor.phone }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var doctorApp = angular.module('doctorApp', []);
+
+        doctorApp.controller('DoctorController', ['$scope', function($scope) {
+            $scope.doctors = [
+                { dno: 1, dname: 'Dr. Smith', address: '123 Main St', phone: '1234567890' },
+                { dno: 2, dname: 'Dr. Johnson', address: '456 Elm St', phone: '9876543210' }
+                // Add more doctors as needed
+            ];
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="myController">
+    <form name="loginform" ng-submit="save(this)" novalidate>
+      Enter Username<input
+        placeholder="User Name"
+        name="name"
+        ng-model="theName"
+        ngminlength="3"
+        ng-required="true"
+      /><br />
+      <br />
+      <span ng-show="loginform.name.$dirty && loginorm.name.$invalid"></span>
+      <span ng-show="loginform.name.$error.required"
+        >User Name is required</span
+      >
+      ><br /><br />
+      Enter Password
+      <input
+        placeholder="Password"
+        name="pass1"
+        ng-model="thePwd"
+        type="password"
+        ng-minlength="8"
+        ng-required="true"
+      /><br /><br />
+      <span ng-show="loginform.pass1.$dirty && loginorm.pass1.$invalid"></span>
+      <span ng-show="loginform.pass1.$error.required"
+        >Password is required.</span
+      ><br /><br />
+      <input type="submit" name="submit" value="submit" />
+    </form>
+    <script>
+      var mainApp = angular.module("myApp", []);
+      mainApp.controller("myController", function ($scope) {
+        $scope.save = function ($this) {
+          if ($this.loginform.name.$error.minlength) {
+            alert("Username is too short");
+          } else if ($this.loginform.pass1.$error.minlength) {
+            alert("password should be eight chars");
+          } else if (
+            $this.loginform.name.$valid &&
+            $this.loginform.pass1.$valid
+          )
+            alert("valid credentials");
+        };
+      });
+    </script>
+  </body>
+</html>

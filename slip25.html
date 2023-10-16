@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Angular JS Validation Program</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+  </head>
+  <body ng-app="mainApp" ng-controller="personController">
+    <h2>Login Applicationn</h2>
+    <div>
+      <form name="personform" novalidate="true">
+        <table border="1">
+          <tr>
+            <td>Enter Email ID</td>
+            <td>
+              <input
+                type="email"
+                name="email"
+                ng-model="email"
+                ng-required="true"
+              />
+            </td>
+            <td>
+              <span
+                style="color: red"
+                ng-show="personform.email.$dirty && personform.email.
+$invalid"
+              ></span>
+              <span ng-show="personform.email.$error.required"
+                >Email is required.</span
+              >
+              <span ng-show="personform.email.$error.email"
+                >Invalid email address.</span
+              >
+            </td>
+          </tr>
+          <td>Enter Password</td>
+          <td>
+            <input
+              placeholder="Password"
+              name="pass1"
+              ng-model="thePwd"
+              type="password"
+              ng-minlength="8"
+              ng-required="true"
+            />
+          </td>
+          <td>
+            <span
+              ng-show="personform.pass1.$dirty && personorm.pass1.$invalid"
+            ></span>
+            <span ng-show="personform.pass1.$error.required"
+              >Password is required.</span
+            >
+            <span ng-show="personform.pass1.$error.minlength"
+              >Password should be 8 chars</span
+            >
+          </td>
+          <tr>
+            <td><input type="submit" value="submit" name="submit" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <script>
+      var mainApp = angular.module("mainApp", []);
+      mainApp.controller("personController", function ($scope) {});
+    </script>
+  </body>
+</html>

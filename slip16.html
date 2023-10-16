@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details in Pune</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="StudentController">
+        <h2>Student Details in Pune</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students | filter: { location: 'Pune' }">
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.location }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        var studentApp = angular.module('studentApp', []);
+
+        studentApp.controller('StudentController', ['$scope', function($scope) {
+            $scope.students = [
+                { name: 'John Doe', age: 20, location: 'Pune' },
+                { name: 'Jane Smith', age: 22, location: 'Mumbai' },
+                { name: 'David Johnson', age: 21, location: 'Pune' },
+                { name: 'Sarah Williams', age: 19, location: 'Pune' },
+                { name: 'Michael Brown', age: 23, location: 'Mumbai' },
+                { name: 'Emily Davis', age: 20, location: 'Pune' }
+            ];
+        }]);
+    </script>
+</body>
+</html>

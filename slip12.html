@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="customerApp">
+<head>
+  <title>Customer Registration and Billing</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body ng-controller="customerController">
+  <h1>Customer Registration and Billing</h1>
+
+  <form name="customerForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" ng-model="customer.name" required><br>
+
+    <label for="contact">Contact No.:</label>
+    <input type="text" id="contact" ng-model="customer.contact" required><br>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" ng-model="customer.gender" required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select><br>
+
+    <label for="item">Favorite Item:</label>
+    <select id="item" ng-model="customer.favoriteItem" ng-options="item.name for item in items" required>
+      <option value="">Select an item</option>
+    </select>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" ng-model="customer.quantity" required><br>
+
+    <label for="suggestions">Suggestions:</label>
+    <textarea id="suggestions" ng-model="customer.suggestions"></textarea><br>
+
+    <button ng-click="calculateBill()">Calculate Bill</button>
+  </form>
+
+  <div ng-show="billGenerated">
+    <h2>Bill</h2>
+    <p>Total Selected Item: {{customer.quantity}}</p>
+    <p>Total Amount:{{customer.quantity * customer.favoriteItem.price | currency: "₹ "}}</p>
+  </div>
+
+  <script>
+    var app = angular.module('customerApp', []);
+
+    app.controller('customerController', function($scope) {
+      $scope.customer = {};
+      $scope.billGenerated = false;
+
+      $scope.items = [
+        { name: 'Item 1', price: 10 },
+        { name: 'Item 2', price: 20 },
+        { name: 'Item 3', price: 15 },
+        // Add more items as needed
+      ];
+
+      $scope.calculateBill = function() {
+        if ($scope.customer.quantity && $scope.customer.favoriteItem) {
+          $scope.billGenerated = true;
+        }
+      };
+    });
+  </script>
+</body>
+</html>

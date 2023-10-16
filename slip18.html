@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teacherApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Profiles - SYBBA (CA)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="TeacherController">
+        <h2>Teacher Profiles for SYBBA (CA)</h2>
+        <div ng-repeat="teacher in teachers">
+            <div style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+                <img ng-src="{{ teacher.photoUrl }}" alt="{{ teacher.name }}" width="100">
+                <h3>{{ teacher.name }}</h3>
+                <p>Teaching Subject: {{ teacher.subject }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var teacherApp = angular.module('teacherApp', []);
+
+        teacherApp.controller('TeacherController', ['$scope', function($scope) {
+            $scope.teachers = [
+                { name: 'John Doe', subject: 'SYBBA (CA)', photoUrl: 'john_doe.jpg' },
+                { name: 'Jane Smith', subject: 'SYBBA (CA)', photoUrl: 'jane_smith.jpg' },
+                // Add more teachers as needed
+            ];
+        }]);
+    </script>
+</body>
+</html>

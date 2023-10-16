@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="myController">
+      <h1>List of games</h1>
+      <button ng-click="displayGames()">Click Me</button>
+      <ul>
+        <li ng-repeat="game in games">{{game}}</li>
+      </ul>
+    </div>
+    <script>
+      var app = angular.module("myApp", []);
+
+      app.controller("myController", function ($scope) {
+        $scope.displayGames = function () {
+          $scope.games = ["pubg", "Bgmi", "Cod"];
+        };
+      });
+    </script>
+  </body>
+</html>

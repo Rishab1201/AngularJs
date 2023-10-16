@@ -1,0 +1,44 @@
+<html ng-app="myApp">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <title>Slip26</title>
+  </head>
+
+  <body>
+    <h1>eLearning</h1>
+
+    <h2><a href="#/">Main Page</a></h2>
+
+    <ul>
+      <li><a href="#/a">Home Page</a></li>
+      <li><a href="#/b">Python Page</a></li>
+    </ul>
+
+    <script type="text/ng-template" id="home.html">
+      <h1>Welcome to Home Page</h1>
+    </script>
+
+    <script type="text/ng-template" id="python.html">
+        <h1>Welcome to python Page</h1>
+    </script>
+
+    <div ng-view></div>
+
+    <script>
+      var app = angular.module("myApp", []);
+      var app = angular.module("myApp", ["ngRoute"]);
+
+      app.config(function ($routeProvider) {
+        $routeProvider
+          .when("/a", {
+            templateUrl: "home.html",
+          })
+          .when('/b',{
+            templateUrl: "python.html",
+          })
+          .otherwise({ redirectTo: "/" });
+      });
+    </script>
+  </body>
+</html>
